@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     const products = await Product.findAll({
       include: [{ model: Category }, { model: Tag, through: ProductTag }],
     });
-    res.status(200).json(products);
+    res.json(products);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -29,7 +29,7 @@ router.get('/:id', async (req, res) => {
       res.status(404).json({ message: 'No product found with that id!' });
       return;
     }
-    res.status(200).json(product);
+    res.json(product);
   } catch (err) {
     res.status(500).json(err);
   }
